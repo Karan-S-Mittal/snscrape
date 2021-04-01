@@ -128,8 +128,14 @@ class Scraper:
 	name = None
 
 	def __init__(self, retries = 3):
+
+		self.session_proxies = {
+			"https":"191.242.178.209:3128"
+		}
+
 		self._retries = retries
 		self._session = requests.Session()
+		self._session.proxies.update(self.session_proxies)
 
 	@abc.abstractmethod
 	def get_items(self):
